@@ -1,0 +1,14 @@
+<div class="col-12 col-md-6">
+  <div class="p-3 shadow-sm rounded bg-white">
+    <h3 class="text20 border-bottom pb-2">List Books</h3>
+    {% for book in datas%}
+    <div class="border p-2 mt-2">
+      <h5 class="m-0 p-0 text18">{{ book.name_book }}</h5>
+      <span class="blockquote-footer text12">{{ book.name_author }}</span>
+      {% if book.detail %}
+      <p class="text16">{{ book.detail }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
