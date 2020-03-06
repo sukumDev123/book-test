@@ -6,6 +6,13 @@ class BookPresenters:
         return BookModel.objects.all()
     def getOnceBookByIdBook(self , id_book):
         return BookModel.objects.get(id=id_book)
+    def saveNewBook(self , body):
+        bookObject = Book(name_book=body['name_book'], 
+                        name_author=body['name_auth'] , 
+                        detail=body['detail'])
+        modelBook = BookModel(name_book=bookObject['name_book'], name_author=bookObject['name_author'] , detail=bookObject['detail'])
+        modelBook.save()
+        return "save new book"
     def updateBook(self , body):
         bookObject = Book(name_book=body['name_book'], 
                         name_author=body['name_auth'] , 
