@@ -4,6 +4,12 @@
 {% block title %} Book Page {% endblock title %}
 <!--  -->
 {% block content %}
+<style>
+  .overflow-auto-custom {
+    overflow: auto;
+    max-height: 400px;
+  }
+</style>
 <div class="row m-3">
   {% include 'Components/add_book.html' %}
   <!--  -->

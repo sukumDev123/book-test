@@ -1,17 +1,47 @@
 <div class="col-12 col-md-6">
-  {{message}}
+  {% if message %}
+  <h5 class="{{classMessage}}">{{message}}</h5>
+  {% endif %}
   <div class="p-3 shadow-sm rounded bg-white">
     <h3 class="text20 border-bottom pb-2">List Books</h3>
-    {% for book in datas%}
-    <div class="border p-2 mt-2">
-      <h5 class="m-0 p-0 text18">{{ book.name_book }}</h5>
-      <span class="blockquote-footer text12">{{ book.name_author }}</span>
-      {% if book.detail %}
-      <p class="text16">{{ book.detail }}</p>
+    <div class="overflow-auto-custom">
+      {% if datas|length == 0 %}
+      <h1 class="text-center mt-3">
+        Null data
+      </h1>
       {% endif %}
-      <a class="text-info" href="?id_edit={{ book.id }}">edit</a>
-      <a class=" text-danger" href="?id_delete={{ book.id }}">delete</a>
+      <!--  -->
+      {% for book in datas%}
+      <div class="border p-2 mt-2">
+        <h5 class="m-0 p-0 text18">{{ book.name_book }}</h5>
+        <span class="blockquote-footer text12">{{ book.name_author }}</span>
+        {% if book.detail %}
+        <p class="text16">{{ book.detail }}</p>
+        {% endif %}
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <a class="btn-info btn-block btn" href="?id_edit={{ book.id }}"
+              >edit</a
+            >
+          </div>
+          <div class="col-12 col-md-6">
+            <a
+              class=" btn-danger text-white btn-block btn"
+              onclick="confirmDelete({{book.id}})"
+              >delete</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </div>
+
+<script>
+  function confirmDelete(id_book) {
+    const deleteConfirm = () =>
+      (window.location.href = "?id_delete=" + id_book);
+    confirm("You want to delete this ?") && deleteConfirm();
+  }
+</script>

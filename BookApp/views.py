@@ -20,6 +20,7 @@ def get_book_all(request):
     if request.GET.get("id_delete"):
         id_book = request.GET.get("id_delete")
         args["message"] = bookPresenters.deleteBookByidBook(id_book)
+        args["classMessage"] = "text-white bg-success  p-3"
 
     if request.method == "POST" and args["form"].is_valid():
         args["form"].save()
@@ -28,6 +29,7 @@ def get_book_all(request):
             if not request.GET.get("id_edit")
             else "update book success"
         )
+        args["classMessage"] = "text-white bg-success p-3"
         args["form"] = AddNewBookForm(None)
 
     return render(request, "Components/book.html", args)
