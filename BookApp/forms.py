@@ -1,10 +1,12 @@
 from django import forms
+from .models import BookModel
 
-
-class AddNewBookForm(forms.Form):
-    name_book = forms.CharField(
-        max_length=255, widget=forms.TextInput(attrs={'class': 'form-control', "placeholder": "Name Book"}))
-    name_author = forms.CharField(
-        max_length=255, widget=forms.TextInput(attrs={'class': 'form-control', "placeholder": "Name Author"}))
-    detail = forms.CharField(
-        max_length=255, widget=forms.Textarea(attrs={'class': 'form-control', "placeholder": "detail"}))
+class AddNewBookForm(forms.ModelForm):
+    class Meta:
+        model = BookModel
+        fields = ['name_book', 'name_author', 'detail']
+        widgets = {
+            "name_book" : forms.TextInput(attrs={'class': "form-control" , "placeholder": "name book..."}),
+            "name_author" : forms.TextInput(attrs={'class': "form-control" , "placeholder" : "name author..."}),
+            "detail": forms.Textarea(attrs={'class': "form-control" , "placeholder" : "detail..."})
+        }
